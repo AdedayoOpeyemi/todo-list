@@ -1,3 +1,52 @@
-.hello {
-  color: red;
+.main-content {
+  width: 400px;
+  margin-top: 160px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 16px;
+  background-color: white;
+  box-shadow: 10px 10px 48px 17px rgba(114,109,109,0.75);
+}
+
+#todo-form {
+  width: 100%
+}
+
+#todo-form > input {
+  width: 100%;
+  border: none;
+}
+
+#todo-form > input:focus {
+  outline: none;
+}
+
+#booklist {
+  list-style-type: none;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0; 
+}
+
+
+li {
+  border-bottom: 1px rgb(231, 227, 227) solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+}
+
+li > p {
+  flex-grow: 1;
+  padding-left: 16px;
+}
+
+.taskMenu {
+  background-color: red;
+}
+
+.taskMenu:hover {
+  cursor: all-scroll;
 }
