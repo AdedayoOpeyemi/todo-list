@@ -5,7 +5,7 @@
 ## Live Demo
 [Todo List App](https://reverent-clarke-8b4656.netlify.app/)
 
-![App Screenshot]('./src/assets/images/Screenshot.png')
+![App Screenshot](./src/assets/images/Screenshot.png)
 
 ### Project requirements
 - Set up a new project with webpack that is based on the webpack exercise you have already completed.
