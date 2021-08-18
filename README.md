@@ -2,7 +2,10 @@
 
 "To-do list" is a tool that helps to organize your day. It simply lists the things that you need to do and allows you to mark them as complete.
 
-## Project specifications
+## Live Demo
+[Todo List App](https://reverent-clarke-8b4656.netlify.app/)
+
+[![App Screenshot]('./src/assets/images/Screenshot.png')]
 
 ### Project requirements
 - Set up a new project with webpack that is based on the webpack exercise you have already completed.
