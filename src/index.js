@@ -1,77 +1,56 @@
-import _ from 'lodash';
 import './assets/styles/styles.css';
 
-const bookList  = document.querySelector("#booklist")
-// function component() {
-//   const element = document.createElement('div');
-
-//   // Lodash, now imported by this script
-//   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-//   element.classList.add('hello');
-
-//   return element;
-// }
-
-// document.body.appendChild(component());
+const bookList = document.querySelector('#booklist');
 
 const taskList = [
-  { 
-    description: "Spend an hour doing job search and networking",
+  {
+    description: 'Spend an hour doing job search and networking',
     completed: false,
-    index: 1
+    index: 1,
   },
-  { 
-    description: "Go to the library for study",
+  {
+    description: 'Go to the library for study',
     completed: false,
-    index: 2
+    index: 2,
   },
-  { 
-    description: "Repair of car at the service center",
+  {
+    description: 'Repair of car at the service center',
     completed: false,
-    index: 3
+    index: 3,
   },
-  { 
-    description: "make grocery purchases for the house",
+  {
+    description: 'make grocery purchases for the house',
     completed: false,
-    index: 4
+    index: 4,
   },
-  { 
-    description: "Go see a movie for relaxation",
+  {
+    description: 'Go see a movie for relaxation',
     completed: false,
-    index: 5
-  }
-]
+    index: 5,
+  },
+];
 
 const loadTaskList = (tasksArray) => {
-  
-
   tasksArray.forEach((task) => {
-    const taskHolder = document.createElement('li')
-    taskHolder.classList.add = "taskCard"
+    const taskHolder = document.createElement('li');
+    taskHolder.classList.add = 'taskCard';
 
-    const taskCheck = document.createElement("INPUT");
-    taskCheck.setAttribute("type", "checkbox");
+    const taskCheck = document.createElement('INPUT');
+    taskCheck.setAttribute('type', 'checkbox');
 
-    const taskDescription = document.createElement('p')
-    taskDescription.innerText = task.description
+    const taskDescription = document.createElement('p');
+    taskDescription.innerText = task.description;
 
-    const menuButton = document.createElement('span')
-    menuButton.classList.add = "taskMenu"
-    menuButton.innerHTML = "&#8942;"
+    const menuButton = document.createElement('span');
+    menuButton.classList.add = 'taskMenu';
+    menuButton.innerHTML = '&#8942;';
 
-    console.log(task)
-    // taskHolder.innerHtml = `
-    // <p>${task.description}</p>
-    // <span>;</span>`
+    taskHolder.appendChild(taskCheck);
+    taskHolder.appendChild(taskDescription);
+    taskHolder.appendChild(menuButton);
 
-    console.log(taskHolder)
-    taskHolder.appendChild(taskCheck)
-    taskHolder.appendChild(taskDescription)
-    taskHolder.appendChild(menuButton)
-    
-    bookList.appendChild(taskHolder)
+    bookList.appendChild(taskHolder);
+  });
+};
 
-  })
-}
-
-document.addEventListener('DOMContentLoaded', loadTaskList(taskList))
+document.addEventListener('DOMContentLoaded', loadTaskList(taskList));
