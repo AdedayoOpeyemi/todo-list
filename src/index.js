@@ -1,8 +1,7 @@
 import './assets/styles/styles.css';
-import { changeCompleteStatus } from './modules/status';
+import changeCompleteStatus from './modules/status.js';
 
 const bookList = document.querySelector('#booklist');
-
 
 const taskList = [
   {
@@ -32,6 +31,25 @@ const taskList = [
   },
 ];
 
+const listArray = () => {
+  if (localStorage.getItem('TaskList') == null) {
+    return taskList;
+  }
+  const list = JSON.parse(localStorage.getItem('TaskList'));
+  return list;
+};
+
+const addCheckBox = () => {
+  const completeCheckBox = document.querySelectorAll("input[type='checkbox']");
+  completeCheckBox.forEach((box) => {
+    box.addEventListener('change', (e) => {
+      const targetBox = e.target;
+      targetBox.parentElement.classList.toggle('strikethrough');
+      changeCompleteStatus(listArray(), targetBox.parentElement.id);
+    });
+  });
+};
+
 const loadTaskList = (tasksArray) => {
   tasksArray.forEach((task) => {
     const taskHolder = document.createElement('li');
@@ -43,9 +61,8 @@ const loadTaskList = (tasksArray) => {
     taskCheck.classList.add = 'completeStatus';
     taskCheck.checked = task.completed;
     if (task.completed) {
-      taskHolder.classList.toggle('strikethrough')
+      taskHolder.classList.toggle('strikethrough');
     }
-
 
     const taskDescription = document.createElement('p');
     taskDescription.innerText = task.description;
@@ -64,37 +81,5 @@ const loadTaskList = (tasksArray) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   loadTaskList(listArray());
-  const completeCheckBox = document.querySelectorAll("input[type='checkbox']")
   addCheckBox();
 });
-
-
-const addCheckBox = () => {
-  const completeCheckBox = document.querySelectorAll("input[type='checkbox']")
-  completeCheckBox.forEach((box) => {
-    console.log(box)
-    box.addEventListener('change', (e) => {
-      const targetBox = e.target
-      targetBox.parentElement.classList.toggle("strikethrough")
-      changeCompleteStatus(listArray(), targetBox.parentElement.id)
-
-    })
-  })
-}
-
-const listArray = () => {
-  if (localStorage.getItem('TaskList') == null) {
-    return taskList
-  } else {
-    const list = JSON.parse(localStorage.getItem('TaskList'))
-    // console.log(list)
-    return list
-  }
-}
-
-const stat= () => {
-
-}
-
-
-
