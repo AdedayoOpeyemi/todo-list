@@ -1,6 +1,7 @@
 const changeCompleteStatus = (objArrayList, taskObjIndex) => {
-  // const index = objArrayList.indexOf(taskObj)
-  objArrayList[taskObjIndex].completed = !objArrayList[taskObjIndex].completed
+  objArrayList[taskObjIndex-1].completed = !objArrayList[taskObjIndex-1].completed;
+  localStorage.setItem('TaskList', JSON.stringify(objArrayList));
+  console.log(objArrayList)
 };
 
 export { changeCompleteStatus }

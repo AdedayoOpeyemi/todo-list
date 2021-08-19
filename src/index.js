@@ -3,6 +3,7 @@ import { changeCompleteStatus } from './modules/status';
 
 const bookList = document.querySelector('#booklist');
 
+
 const taskList = [
   {
     description: 'Spend an hour doing job search and networking',
@@ -34,11 +35,16 @@ const taskList = [
 const loadTaskList = (tasksArray) => {
   tasksArray.forEach((task) => {
     const taskHolder = document.createElement('li');
+    taskHolder.setAttribute('id', task.index);
     taskHolder.classList.add = 'taskCard';
 
     const taskCheck = document.createElement('INPUT');
     taskCheck.setAttribute('type', 'checkbox');
     taskCheck.classList.add = 'completeStatus';
+    taskCheck.checked = task.completed;
+    if (task.completed) {
+      taskHolder.classList.toggle('strikethrough')
+    }
 
 
     const taskDescription = document.createElement('p');
@@ -57,27 +63,37 @@ const loadTaskList = (tasksArray) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  loadTaskList(taskList);
+  loadTaskList(listArray());
+  const completeCheckBox = document.querySelectorAll("input[type='checkbox']")
   addCheckBox();
-  
 });
 
 
 const addCheckBox = () => {
-  const completeCheckBox = document.querySelectorAll("input[type='checkbox']");
+  const completeCheckBox = document.querySelectorAll("input[type='checkbox']")
   completeCheckBox.forEach((box) => {
+    console.log(box)
     box.addEventListener('change', (e) => {
-      // console.log(box.checked)
-      // console.log(box.parentElement)
-      console.log(e.target.type)
-      // e.target.classList.add("common");
-      console.log(e.target.classList);
-      console.log(e.target.parentElement);
-      console.log(e.target.parentElement.classList);
-      // e.target.parentElement.classList.add("strikethrough")
-      // console.log(box.parentElement.classList)
+      const targetBox = e.target
+      targetBox.parentElement.classList.toggle("strikethrough")
+      changeCompleteStatus(listArray(), targetBox.parentElement.id)
+
     })
   })
+}
+
+const listArray = () => {
+  if (localStorage.getItem('TaskList') == null) {
+    return taskList
+  } else {
+    const list = JSON.parse(localStorage.getItem('TaskList'))
+    // console.log(list)
+    return list
+  }
+}
+
+const stat= () => {
+
 }
 
 
