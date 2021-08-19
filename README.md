@@ -3,7 +3,7 @@
 "To-do list" is a tool that helps to organize your day. It simply lists the things that you need to do and allows you to mark them as complete.
 
 ## Live Demo
-[Todo List App](https://reverent-clarke-8b4656.netlify.app/)
+[Todo List App](https://tender-austin-dfac05.netlify.app/)
 
 ![App Screenshot](./src/assets/images/Screenshot.png)
 
