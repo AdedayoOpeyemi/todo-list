@@ -37,6 +37,10 @@ li {
   height: 56px;
 }
 
+.completeStatus {
+  color: yellow;
+}
+
 li > p {
   flex-grow: 1;
   padding-left: 16px;
@@ -48,4 +52,8 @@ li > p {
 
 .taskMenu:hover {
   cursor: all-scroll;
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }

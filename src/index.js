@@ -1,4 +1,5 @@
 import './assets/styles/styles.css';
+import changeCompleteStatus from './modules/status.js';
 
 const bookList = document.querySelector('#booklist');
 
@@ -30,13 +31,38 @@ const taskList = [
   },
 ];
 
+const listArray = () => {
+  if (localStorage.getItem('TaskList') == null) {
+    return taskList;
+  }
+  const list = JSON.parse(localStorage.getItem('TaskList'));
+  return list;
+};
+
+const addCheckBox = () => {
+  const completeCheckBox = document.querySelectorAll("input[type='checkbox']");
+  completeCheckBox.forEach((box) => {
+    box.addEventListener('change', (e) => {
+      const targetBox = e.target;
+      targetBox.parentElement.classList.toggle('strikethrough');
+      changeCompleteStatus(listArray(), targetBox.parentElement.id);
+    });
+  });
+};
+
 const loadTaskList = (tasksArray) => {
   tasksArray.forEach((task) => {
     const taskHolder = document.createElement('li');
+    taskHolder.setAttribute('id', task.index);
     taskHolder.classList.add = 'taskCard';
 
     const taskCheck = document.createElement('INPUT');
     taskCheck.setAttribute('type', 'checkbox');
+    taskCheck.classList.add = 'completeStatus';
+    taskCheck.checked = task.completed;
+    if (task.completed) {
+      taskHolder.classList.toggle('strikethrough');
+    }
 
     const taskDescription = document.createElement('p');
     taskDescription.innerText = task.description;
@@ -53,4 +79,7 @@ const loadTaskList = (tasksArray) => {
   });
 };
 
-document.addEventListener('DOMContentLoaded', loadTaskList(taskList));
+document.addEventListener('DOMContentLoaded', () => {
+  loadTaskList(listArray());
+  addCheckBox();
+});
