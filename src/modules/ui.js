@@ -1,13 +1,13 @@
 import changeCompleteStatus from './status.js';
 import { getCurrentList, deleteTask } from './add_remove.js'
 
-const listArray = () => {
-  if (localStorage.getItem('TaskList') == null) {
-    return taskList;
-  }
-  const list = JSON.parse(localStorage.getItem('TaskList'));
-  return list;
-};
+// const listArray = () => {
+//   if (localStorage.getItem('TaskList') == null) {
+//     return taskList;
+//   }
+//   const list = JSON.parse(localStorage.getItem('TaskList'));
+//   return list;
+// };
 const taskListContainer = document.querySelector('#taskListContainer');
 
 const displayTask = (task) => {
@@ -25,7 +25,7 @@ const displayTask = (task) => {
 
     const taskDescription = document.createElement('input');
     taskDescription.classList.add('task-details');
-    // taskDescription.setAttribute('readonly', 'readonly');
+    taskDescription.setAttribute('readonly', 'readonly');
     taskDescription.value = task.description;
 
     const menuButton = document.createElement('span');
@@ -48,7 +48,7 @@ const displayTask = (task) => {
 }
 
 const addCheckBoxListener = (taskId) => {
-  const taskCheckBox = document.getElementById(taskId)
+  const taskCheckBox = document.getElementById(taskId).querySelector("input[type='checkbox']")
   // console.log(taskCheckBox)
   taskCheckBox.addEventListener('change', (e) => {
     const targetBox = e.target;
@@ -67,29 +67,39 @@ const changeIcon = (taskId) => {
   const taskIcon = document.getElementById(taskId).querySelector(".taskMenu");
   console.log("I found this" + taskIcon)
   // inputs = document.querySelectorAll('.text');
-  const trashIcon = document.getElementById(taskId).querySelector(".trashButton");
+  const trashIcon = document.getElementById(taskId).querySelector(".trashButton")[0];
+  console.log(trashIcon)
 
   const taskInputField = document.getElementById(taskId).querySelector(".task-details");
+  // console.log()
 
   taskInputField.addEventListener('focusin', () => {
     trashIcon.classList.toggle('d-none');
     taskIcon.classList.toggle('d-none');
+    taskInputField.removeAttribute('readonly')
   })
-
-  // taskInputField.addEventListener('focusout', () => {
-  //   trashIcon.classList.toggle('d-none');
-  //   taskIcon.classList.toggle('d-none');
-  // })
+ taskInputField.addEventListener('focusout', () => {
+    trashIcon.classList.toggle('d-none');
+    taskIcon.classList.toggle('d-none');
+  })
+ 
 
   taskInputField.addEventListener('keydown', (e) => {
     const newDescription =  taskInputField.value;
     if (e.keyCode === 13 & newDescription !== '') {
-      var newevent = new Event('blur')
-      taskInputField.dispatchEvent(newevent)
+      const oldValueList = getCurrentList();
+      oldValueList[taskId - 1].description = newDescription;
+      localStorage.setItem('TaskList', JSON.stringify(oldValueList));
+
+      // var newevent = new Event('focusout')
+      // taskInputField.dispatchEvent(newevent);
+      taskInputField.blur();
+      // taskInputField.setAttribute('readonly', 'readonly');
     }
   })
 
   trashIcon.addEventListener('click', (e) => {
+    console.log("I am here - delete option")
     deleteTask(taskId);
     console.log("I got here")
     clearDisplay();
