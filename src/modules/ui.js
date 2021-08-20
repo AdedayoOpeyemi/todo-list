@@ -67,7 +67,7 @@ const changeIcon = (taskId) => {
   const taskIcon = document.getElementById(taskId).querySelector(".taskMenu");
   console.log("I found this" + taskIcon)
   // inputs = document.querySelectorAll('.text');
-  const trashIcon = document.getElementById(taskId).querySelector(".trashButton")[0];
+  const trashIcon = document.getElementById(taskId).querySelector(".trashButton");
   console.log(trashIcon)
 
   const taskInputField = document.getElementById(taskId).querySelector(".task-details");
