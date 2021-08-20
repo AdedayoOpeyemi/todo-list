@@ -145,4 +145,4 @@ const clearDisplay = () => {
   })
 }
 
-export { displayTask, loadTaskList };
+export { displayTask, loadTaskList, clearDisplay };

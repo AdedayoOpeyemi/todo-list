@@ -78,3 +78,17 @@ li > p {
   text-decoration: line-through;
   opacity: 0.5;
 }
+
+#delete-all-completed {
+  background-color: rgb(204, 192, 192);
+  height: 32px;
+  display:flex;
+  align-items: center;
+  
+}
+
+#delete-all-completed > span {
+  width: 100%;
+  text-align:center;
+}
+
