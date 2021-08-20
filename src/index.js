@@ -12,32 +12,8 @@ const taskForm = document.querySelector('#todo-form');
 const completeCheckBox = document.querySelectorAll("input[type='checkbox']");
 
 
-
-// const addCheckBoxListener = (taskId) => {
-
-// }
-
-// const addCheckBox = () => {
-  
-//   completeCheckBox.forEach((box) => {
-//     box.addEventListener('change', (e) => {
-//       const targetBox = e.target;
-//       targetBox.parentElement.classList.toggle('strikethrough');
-//       changeCompleteStatus(listArray(), targetBox.parentElement.id);
-//     });
-//   });
-// };
-
-
-// const loadTaskList = (tasksArray) => {
-//   tasksArray.forEach((task) => {
-//     displayTask(task)
-//   });
-// };
-
 document.addEventListener('DOMContentLoaded', () => {
   loadTaskList();
-  // addCheckBox();
 });
 
 taskForm.addEventListener('submit', (e) => {

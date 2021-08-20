@@ -36,14 +36,20 @@ const displayTask = (task) => {
 
     taskListContainer.appendChild(taskHolder);
     addCheckBoxListener(task.index)
+    console.log("added listener for checkbox")
 }
 
 const addCheckBoxListener = (taskId) => {
-  const taskCheckBox = document.getElementById(taskId).children[0];
+  const taskCheckBox = document.getElementById(taskId)
+  // console.log(taskCheckBox)
   taskCheckBox.addEventListener('change', (e) => {
     const targetBox = e.target;
-    console.log(taskCheckBox)
-    targetBox.parentElement.classList.toggle('strikethrough');
+    // console.log(targetBox.parentElement)
+
+    // console.log(taskCheckBox)
+    // taskCheckBox.classList.toggle('strikethrough');
+    targetBox.parentElement.classList= 'strikethrough'
+    // console.log(targetBox.parentElement.id)
     changeCompleteStatus(getCurrentList(), targetBox.parentElement.id);
   });
   
