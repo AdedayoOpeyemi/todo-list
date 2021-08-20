@@ -1,5 +1,5 @@
 import changeCompleteStatus from './status.js';
-import { getCurrentList } from './add_remove.js'
+import { getCurrentList, deleteTask } from './add_remove.js'
 
 const listArray = () => {
   if (localStorage.getItem('TaskList') == null) {
@@ -69,17 +69,45 @@ const changeIcon = (taskId) => {
   // inputs = document.querySelectorAll('.text');
   const trashIcon = document.getElementById(taskId).querySelector(".trashButton");
 
-  taskIcon.previousSibling.addEventListener('focusin', () => {
+  const taskInputField = document.getElementById(taskId).querySelector(".task-details");
+
+  taskInputField.addEventListener('focusin', () => {
     trashIcon.classList.toggle('d-none');
     taskIcon.classList.toggle('d-none');
   })
 
-  taskIcon.previousSibling.addEventListener('focusout', () => {
-    trashIcon.classList.toggle('d-none');
-    taskIcon.classList.toggle('d-none');
+  // taskInputField.addEventListener('focusout', () => {
+  //   trashIcon.classList.toggle('d-none');
+  //   taskIcon.classList.toggle('d-none');
+  // })
+
+  taskInputField.addEventListener('keydown', (e) => {
+    const newDescription =  taskInputField.value;
+    if (e.keyCode === 13 & newDescription !== '') {
+      var newevent = new Event('blur')
+      taskInputField.dispatchEvent(newevent)
+    }
   })
 
-  
+  trashIcon.addEventListener('click', (e) => {
+    deleteTask(taskId);
+    console.log("I got here")
+    clearDisplay();
+    loadTaskList();
+
+  })
+
+  // taskIcon.previousSibling.addEventListener('focusin', () => {
+  //   trashIcon.classList.toggle('d-none');
+  //   taskIcon.classList.toggle('d-none');
+  // })
+
+  // taskIcon.previousSibling.addEventListener('focusout', () => {
+  //   trashIcon.classList.toggle('d-none');
+  //   taskIcon.classList.toggle('d-none');
+  // })
+
+
   // this.inputs.forEach((input, index) => {
   //   input.addEventListener('focus', () => {
   //     this.trashs[index].classList.toggle('d-none');
@@ -108,5 +136,13 @@ const loadTaskList = () => {
     displayTask(task)
   });
 };
+
+const clearDisplay = () => {
+  const currentDisplay = document.querySelectorAll('.task-details');
+  console.log(currentDisplay)
+  currentDisplay.forEach((taskDetail) => {
+    taskDetail.parentElement.remove();
+  })
+}
 
 export { displayTask, loadTaskList };

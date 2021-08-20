@@ -19,13 +19,25 @@ const addNewTask = () => {
   console.log(getCurrentList())
 } 
 
-// const deleteTask = (taskId) => {
-
-// }
+const deleteTask = (taskId) => {
+  let i = 1
+  const oldList = getCurrentList();
+  oldList.splice(taskId-1, 1);
+  
+  const newList = oldList.map((task) => {
+    console.log(task)
+    task.index = i;
+    i += 1
+    console.log(i)
+    console.log(task)
+    return task
+  })
+  localStorage.setItem('TaskList', JSON.stringify(newList));
+}
 
 const getCurrentList = () => {
   const listFromStorage = JSON.parse(localStorage.getItem('TaskList'));
   return listFromStorage || []
 }
 
-export { addNewTask, getCurrentList };
+export { addNewTask, deleteTask, getCurrentList };
