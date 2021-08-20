@@ -1,85 +1,46 @@
+import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/solid';
+import '@fortawesome/fontawesome-free/js/regular';
+import '@fortawesome/fontawesome-free/js/brands';
 import './assets/styles/styles.css';
+
 import changeCompleteStatus from './modules/status.js';
+import { displayTask, loadTaskList } from './modules/ui.js'
+import { addNewTask } from './modules/add_remove.js';
 
-const bookList = document.querySelector('#booklist');
+const taskForm = document.querySelector('#todo-form');
+const completeCheckBox = document.querySelectorAll("input[type='checkbox']");
 
-const taskList = [
-  {
-    description: 'Spend an hour doing job search and networking',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Go to the library for study',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Repair of car at the service center',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'make grocery purchases for the house',
-    completed: false,
-    index: 4,
-  },
-  {
-    description: 'Go see a movie for relaxation',
-    completed: false,
-    index: 5,
-  },
-];
 
-const listArray = () => {
-  if (localStorage.getItem('TaskList') == null) {
-    return taskList;
-  }
-  const list = JSON.parse(localStorage.getItem('TaskList'));
-  return list;
-};
 
-const addCheckBox = () => {
-  const completeCheckBox = document.querySelectorAll("input[type='checkbox']");
-  completeCheckBox.forEach((box) => {
-    box.addEventListener('change', (e) => {
-      const targetBox = e.target;
-      targetBox.parentElement.classList.toggle('strikethrough');
-      changeCompleteStatus(listArray(), targetBox.parentElement.id);
-    });
-  });
-};
+// const addCheckBoxListener = (taskId) => {
 
-const loadTaskList = (tasksArray) => {
-  tasksArray.forEach((task) => {
-    const taskHolder = document.createElement('li');
-    taskHolder.setAttribute('id', task.index);
-    taskHolder.classList.add = 'taskCard';
+// }
 
-    const taskCheck = document.createElement('INPUT');
-    taskCheck.setAttribute('type', 'checkbox');
-    taskCheck.classList.add = 'completeStatus';
-    taskCheck.checked = task.completed;
-    if (task.completed) {
-      taskHolder.classList.toggle('strikethrough');
-    }
+// const addCheckBox = () => {
+  
+//   completeCheckBox.forEach((box) => {
+//     box.addEventListener('change', (e) => {
+//       const targetBox = e.target;
+//       targetBox.parentElement.classList.toggle('strikethrough');
+//       changeCompleteStatus(listArray(), targetBox.parentElement.id);
+//     });
+//   });
+// };
 
-    const taskDescription = document.createElement('p');
-    taskDescription.innerText = task.description;
 
-    const menuButton = document.createElement('span');
-    menuButton.classList.add = 'taskMenu';
-    menuButton.innerHTML = '&#8942;';
-
-    taskHolder.appendChild(taskCheck);
-    taskHolder.appendChild(taskDescription);
-    taskHolder.appendChild(menuButton);
-
-    bookList.appendChild(taskHolder);
-  });
-};
+// const loadTaskList = (tasksArray) => {
+//   tasksArray.forEach((task) => {
+//     displayTask(task)
+//   });
+// };
 
 document.addEventListener('DOMContentLoaded', () => {
-  loadTaskList(listArray());
-  addCheckBox();
+  loadTaskList();
+  // addCheckBox();
+});
+
+taskForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+  addNewTask()
 });
