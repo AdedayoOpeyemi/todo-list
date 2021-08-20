@@ -19,6 +19,10 @@ const addNewTask = () => {
   console.log(getCurrentList())
 } 
 
+// const deleteTask = (taskId) => {
+
+// }
+
 const getCurrentList = () => {
   const listFromStorage = JSON.parse(localStorage.getItem('TaskList'));
   return listFromStorage || []

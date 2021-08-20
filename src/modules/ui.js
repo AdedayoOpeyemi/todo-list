@@ -48,7 +48,7 @@ const addCheckBoxListener = (taskId) => {
 
     // console.log(taskCheckBox)
     // taskCheckBox.classList.toggle('strikethrough');
-    targetBox.parentElement.classList= 'strikethrough'
+    targetBox.parentElement.classList.toggle('strikethrough')
     // console.log(targetBox.parentElement.id)
     changeCompleteStatus(getCurrentList(), targetBox.parentElement.id);
   });
