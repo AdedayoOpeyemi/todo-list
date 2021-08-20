@@ -8,6 +8,10 @@
   box-shadow: 10px 10px 48px 17px rgba(114, 109, 109, 0.75);
 }
 
+#taskListContainer {
+  padding: 0;
+}
+
 #todo-form {
   width: 100%;
   display: flex;
@@ -18,6 +22,10 @@
   /* width: 100%; */
   flex-grow: 1;
   border: none;
+}
+
+input:focus {
+  outline: none;
 }
 
 #todo-form > input:focus {
@@ -49,9 +57,18 @@ li > p {
   padding-left: 16px;
 }
 
-.taskMenu {
-  background-color: red;
+.task-details {
+  flex-grow: 1;
+  border: none;
+  padding-left: 16px;
 }
+.d-none {
+  display: none;
+}
+
+/* .taskMenu {
+  /* background-color: red; */
+/* } */ */
 
 .taskMenu:hover {
   cursor: all-scroll;
