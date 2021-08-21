@@ -74,14 +74,41 @@ const changeIcon = (taskId) => {
   // console.log()
 
   taskInputField.addEventListener('focusin', () => {
+    // trashIcon.classList.toggle('d-none');
+    // taskIcon.classList.toggle('d-none');
+    taskInputField.removeAttribute('readonly')
+  })
+
+  taskInputField.addEventListener('click', () => {
+    trashIcon.classList.remove('d-none');
+    taskIcon.classList.add('d-none');
+    taskInputField.removeAttribute('readonly')
+  })
+
+  taskInputField.addEventListener('focusout', () => {
     trashIcon.classList.toggle('d-none');
     taskIcon.classList.toggle('d-none');
     taskInputField.removeAttribute('readonly')
   })
-//  taskInputField.addEventListener('focusout', () => {
-//     trashIcon.classList.toggle('d-none');
-//     taskIcon.classList.toggle('d-none');
-//   })
+
+taskIcon.addEventListener('click', () => {
+  taskIcon.classList.toggle('d-none');
+  trashIcon.classList.toggle('d-none');
+  taskInputField .focus()
+})
+
+trashIcon.addEventListener('focusout', () => {
+  console.log('delete button was clicked')
+  console.log(trashIcon)
+  trashIcon.classList.toggle('d-none');
+  taskIcon.classList.toggle('d-none');
+  // taskIcon.previousSibling.focus()
+})
+
+// taskIcon.previousSibling.addEventListener('focusout', () => {
+//   trashIcon.classList.toggle('d-none');
+//   taskIcon.classList.toggle('d-none');
+// })
  
 
   taskInputField.addEventListener('keydown', (e) => {
@@ -94,8 +121,8 @@ const changeIcon = (taskId) => {
       // var newevent = new Event('focusout')
       // taskInputField.dispatchEvent(newevent);
       taskInputField.blur();
-      trashIcon.classList.toggle('d-none');
-      taskIcon.classList.toggle('d-none');
+      trashIcon.classList.add('d-none');
+      taskIcon.classList.remove('d-none');
       // taskInputField.setAttribute('readonly', 'readonly');
     }
   })
