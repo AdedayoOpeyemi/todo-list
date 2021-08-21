@@ -11,6 +11,7 @@ import { addNewTask, getCurrentList } from './modules/add_remove.js';
 const taskForm = document.querySelector('#todo-form');
 const completeCheckBox = document.querySelectorAll("input[type='checkbox']");
 const deleteAllButton = document.querySelector('#delete-all-completed')
+const newTaskInput = document.querySelector('#new-task')
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 taskForm.addEventListener('submit', (e) => {
   e.preventDefault()
   addNewTask()
+  newTaskInput.value = ''
 });
 
 deleteAllButton.addEventListener('click', (e) => {

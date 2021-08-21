@@ -67,12 +67,13 @@ li > p {
 }
 
 /* .taskMenu {
-  /* background-color: red; */
-/* } */ */
+  background-color: red;
+  padding: 24px;
+} */
 
-.taskMenu:hover {
-  cursor: all-scroll;
-}
+/* .taskMenu:hover {
+  cursor: pointer;
+} */
 
 .strikethrough {
   text-decoration: line-through;
@@ -90,5 +91,9 @@ li > p {
 #delete-all-completed > span {
   width: 100%;
   text-align:center;
+}
+
+#delete-all-completed:hover {
+  cursor: pointer;
 }
 

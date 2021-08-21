@@ -78,10 +78,10 @@ const changeIcon = (taskId) => {
     taskIcon.classList.toggle('d-none');
     taskInputField.removeAttribute('readonly')
   })
- taskInputField.addEventListener('focusout', () => {
-    trashIcon.classList.toggle('d-none');
-    taskIcon.classList.toggle('d-none');
-  })
+//  taskInputField.addEventListener('focusout', () => {
+//     trashIcon.classList.toggle('d-none');
+//     taskIcon.classList.toggle('d-none');
+//   })
  
 
   taskInputField.addEventListener('keydown', (e) => {
@@ -94,12 +94,15 @@ const changeIcon = (taskId) => {
       // var newevent = new Event('focusout')
       // taskInputField.dispatchEvent(newevent);
       taskInputField.blur();
+      trashIcon.classList.toggle('d-none');
+      taskIcon.classList.toggle('d-none');
       // taskInputField.setAttribute('readonly', 'readonly');
     }
   })
 
   trashIcon.addEventListener('click', (e) => {
     console.log("I am here - delete option")
+    e.preventDefault()
     deleteTask(taskId);
     console.log("I got here")
     clearDisplay();
