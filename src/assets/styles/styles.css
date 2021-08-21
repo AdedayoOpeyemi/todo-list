@@ -15,17 +15,16 @@
 #todo-form {
   width: 100%;
   display: flex;
-  flex-direction: row
-}
-
-#todo-form > input {
-  /* width: 100%; */
-  flex-grow: 1;
-  border: none;
+  flex-direction: row;
 }
 
 input:focus {
   outline: none;
+}
+
+#todo-form > input {
+  flex-grow: 1;
+  border: none;
 }
 
 #todo-form > input:focus {
@@ -62,18 +61,10 @@ li > p {
   border: none;
   padding-left: 16px;
 }
+
 .d-none {
   display: none;
 }
-
-/* .taskMenu {
-  background-color: red;
-  padding: 24px;
-} */
-
-/* .taskMenu:hover {
-  cursor: pointer;
-} */
 
 .strikethrough {
   text-decoration: line-through;
@@ -83,17 +74,15 @@ li > p {
 #delete-all-completed {
   background-color: rgb(204, 192, 192);
   height: 32px;
-  display:flex;
+  display: flex;
   align-items: center;
-  
 }
 
 #delete-all-completed > span {
   width: 100%;
-  text-align:center;
+  text-align: center;
 }
 
 #delete-all-completed:hover {
   cursor: pointer;
 }
-
