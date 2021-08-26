@@ -36,3 +36,17 @@ describe('addTask method', () => {
     expect(document.querySelectorAll('li').length).toEqual(3);
   });
 });
+
+describe('deleteTask method', () => {
+  test('delete task from the Local Storage', () => {
+    expect(getCurrentList().length).toEqual(2);
+    deleteTask(1);
+    expect(getCurrentList().length).toEqual(1);
+  });
+
+  test('The added task reads and is displayed to the UI', () => {
+    addNewTask();
+    displayTask(getCurrentList()[getCurrentList().length - 1]);
+    expect(getCurrentList().length).toEqual(3);
+  });
+});
