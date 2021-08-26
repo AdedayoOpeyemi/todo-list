@@ -32,13 +32,21 @@ describe('changeCompletedStatus method', () => {
     expect(getCurrentList()[getCurrentList().length - 1].completed).toBeTruthy();
   });
 
-  // test('Add new tasks in dom', () => {
-  //   expect.assertions(2);
-  //   addNewTask();
-  //   displayTask(getCurrentList()[getCurrentList().length - 1]);
-  //   expect(document.querySelectorAll('li').length).toEqual(2);
-  //   addNewTask();
-  //   displayTask(getCurrentList()[getCurrentList().length - 1]);
-  //   expect(document.querySelectorAll('li').length).toEqual(3);
-  // });
+  test('change status updates in the dom tasks in dom', () => {
+    expect.assertions(3);
+    addNewTask();
+    displayTask(getCurrentList()[getCurrentList().length - 1]);
+    expect(document.querySelectorAll('li').length).toEqual(2);
+    addNewTask();
+    displayTask(getCurrentList()[getCurrentList().length - 1]);
+    expect(document.getElementsByTagName('li')[1].querySelector("input[type='checkbox']").checked).toBeFalsy()
+    document.body.innerHTML = `<ul id="taskListContainer"><li><form id="todo-form">
+      <input type="text" id="new-task" placeholder="Add to Todo" value="brand new task added">
+      <button id="submit-button"><i class="fas fa-check"></i></button>
+      <span></span>
+      </form></li></ul>`
+    changeCompleteStatus(getCurrentList(), 1)
+    displayTask(getCurrentList()[0]);
+    expect(document.getElementsByTagName('li')[1].querySelector("input[type='checkbox']").checked).toBeTruthy()
+  });
 });
