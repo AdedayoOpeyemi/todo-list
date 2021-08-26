@@ -3,8 +3,6 @@
 import changeCompleteStatus from './status.js';
 import { getCurrentList, deleteTask } from './add_remove.js';
 
-const taskListContainer = document.querySelector('#taskListContainer');
-
 const clearDisplay = () => {
   const currentDisplay = document.querySelectorAll('.task-details');
   currentDisplay.forEach((taskDetail) => {
@@ -58,7 +56,7 @@ const displayTask = (task) => {
   taskHolder.appendChild(taskDescription);
   taskHolder.appendChild(menuButton);
   taskHolder.appendChild(thrashButton);
-
+  const taskListContainer = document.querySelector('#taskListContainer');
   taskListContainer.appendChild(taskHolder);
   addCheckBoxListener(task.index);
   changeIcon(task.index);
