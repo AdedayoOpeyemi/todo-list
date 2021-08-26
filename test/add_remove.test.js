@@ -44,7 +44,7 @@ describe('deleteTask method', () => {
     expect(getCurrentList().length).toEqual(1);
   });
 
-  test('The added task reads and is displayed to the UI', () => {
+  test('Delete task from the UI display', () => {
     addNewTask();
     displayTask(getCurrentList()[getCurrentList().length - 1]);
     expect(getCurrentList().length).toEqual(3);
