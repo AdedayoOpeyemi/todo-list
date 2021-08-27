@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 
-import  changeCompleteStatus from '.././src/modules/status.js';
-import { addNewTask, deleteTask, getCurrentList } from '../src/modules/add_remove.js';
+import changeCompleteStatus from '../src/modules/status.js';
+import { addNewTask, getCurrentList } from '../src/modules/add_remove.js';
 import { displayTask } from '../src/modules/ui.js';
 
 beforeEach(() => {
@@ -25,10 +25,10 @@ describe('changeCompletedStatus method', () => {
   test('Change status updates the completed property in local storage', () => {
     expect.assertions(4);
     addNewTask();
-    expect(getCurrentList()[getCurrentList().length - 1]).toEqual({description: "brand new task added", completed: false, index: 3});
+    expect(getCurrentList()[getCurrentList().length - 1]).toEqual({ description: 'brand new task added', completed: false, index: 3 });
     expect(getCurrentList()[getCurrentList().length - 1].completed).toBeFalsy();
-    changeCompleteStatus(getCurrentList(), 3)
-    expect(getCurrentList()[3-1]).toEqual({description: "brand new task added", completed: true, index: 3});
+    changeCompleteStatus(getCurrentList(), 3);
+    expect(getCurrentList()[3 - 1]).toEqual({ description: 'brand new task added', completed: true, index: 3 });
     expect(getCurrentList()[getCurrentList().length - 1].completed).toBeTruthy();
   });
 
@@ -39,14 +39,14 @@ describe('changeCompletedStatus method', () => {
     expect(document.querySelectorAll('li').length).toEqual(2);
     addNewTask();
     displayTask(getCurrentList()[getCurrentList().length - 1]);
-    expect(document.getElementsByTagName('li')[1].querySelector("input[type='checkbox']").checked).toBeFalsy()
+    expect(document.getElementsByTagName('li')[1].querySelector("input[type='checkbox']").checked).toBeFalsy();
     document.body.innerHTML = `<ul id="taskListContainer"><li><form id="todo-form">
       <input type="text" id="new-task" placeholder="Add to Todo" value="brand new task added">
       <button id="submit-button"><i class="fas fa-check"></i></button>
       <span></span>
-      </form></li></ul>`
-    changeCompleteStatus(getCurrentList(), 1)
+      </form></li></ul>`;
+    changeCompleteStatus(getCurrentList(), 1);
     displayTask(getCurrentList()[0]);
-    expect(document.getElementsByTagName('li')[1].querySelector("input[type='checkbox']").checked).toBeTruthy()
+    expect(document.getElementsByTagName('li')[1].querySelector("input[type='checkbox']").checked).toBeTruthy();
   });
 });

@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 
-import { editTaskDescription } from '.././src/modules/ui.js';
-import { addNewTask, getCurrentList } from '.././src/modules/add_remove.js';
+import { editTaskDescription } from '../src/modules/ui.js';
+import { addNewTask, getCurrentList } from '../src/modules/add_remove.js';
 
 beforeEach(() => {
   const previousList = [{ description: 'task 1', completed: false, index: 1 }, { description: 'task 2', completed: false, index: 2 }];
@@ -24,11 +24,10 @@ describe('Edit task description method', () => {
   test('changes the value of task description in local storage', () => {
     expect.assertions(4);
     addNewTask();
-    expect(getCurrentList()[getCurrentList().length - 1]).toEqual({description: "brand new task added", completed: false, index: 3});
-    expect(getCurrentList()[getCurrentList().length - 1].description).toBe("brand new task added");
-    editTaskDescription(3, "This is an updated description")
-    expect(getCurrentList()[3-1]).toEqual({description: "This is an updated description", completed: false, index: 3});
-    expect(getCurrentList()[getCurrentList().length - 1].description).toBe("This is an updated description");
+    expect(getCurrentList()[getCurrentList().length - 1]).toEqual({ description: 'brand new task added', completed: false, index: 3 });
+    expect(getCurrentList()[getCurrentList().length - 1].description).toBe('brand new task added');
+    editTaskDescription(3, 'This is an updated description');
+    expect(getCurrentList()[3 - 1]).toEqual({ description: 'This is an updated description', completed: false, index: 3 });
+    expect(getCurrentList()[getCurrentList().length - 1].description).toBe('This is an updated description');
   });
-})
-
+});

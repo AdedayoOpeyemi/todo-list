@@ -1,7 +1,7 @@
-import { loadTaskList, clearDisplay } from './ui.js'
-import { getCurrentList } from './add_remove.js'
+import { loadTaskList, clearDisplay } from './ui.js';
+import { getCurrentList } from './add_remove.js';
 
-const deleteCompletedTasks= () => {
+const deleteCompletedTasks = () => {
   const newList = getCurrentList().filter((task) => task.completed === false);
   let i = 1;
   const updatedList = newList.map((task) => {
@@ -14,4 +14,4 @@ const deleteCompletedTasks= () => {
   loadTaskList();
 };
 
-export { deleteCompletedTasks }
+export { deleteCompletedTasks as default };

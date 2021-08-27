@@ -93,7 +93,7 @@ const changeIcon = (taskId) => {
   taskInputField.addEventListener('keydown', (e) => {
     const newDescription = taskInputField.value;
     if (e.keyCode === 13 && newDescription !== '') {
-      editTaskDescription(taskId, newDescription)
+      editTaskDescription(taskId, newDescription);
       taskInputField.blur();
       trashIcon.classList.add('d-none');
       taskIcon.classList.remove('d-none');
@@ -105,5 +105,7 @@ const editTaskDescription = (taskId, newDescription) => {
   const oldValueList = getCurrentList();
   oldValueList[taskId - 1].description = newDescription;
   localStorage.setItem('TaskList', JSON.stringify(oldValueList));
-}
-export { displayTask, loadTaskList, clearDisplay, editTaskDescription };
+};
+export {
+  displayTask, loadTaskList, clearDisplay, editTaskDescription,
+};
