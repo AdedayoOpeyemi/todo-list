@@ -52,4 +52,22 @@ describe('DeleteAllTasks method', () => {
     expect(document.getElementsByTagName('li').length).toBe(2)
     expect(getCurrentList().length).toBe(1)
   });
+  test("Tasks id's rearrange properly", () => {
+    expect.assertions(6);
+    addNewTask();
+    addNewTask();
+    getCurrentList().forEach((task) => {
+      displayTask(task)
+    })
+    expect(document.getElementsByTagName('li').length).toBe(5)
+    expect(getCurrentList()).toStrictEqual([{ description: 'task 1', completed: false, index: 1 }, { description: 'task 2', completed: false, index: 2 }, { description: 'brand new task added', completed: false, index: 3 }, { description: 'brand new task added', completed: false, index: 4}])
+    document.querySelectorAll("input[type='checkbox']")[1].dispatchEvent(new window.MouseEvent('click'));
+    expect(document.getElementsByTagName('li')[2].querySelector("input[type='checkbox']").checked).toBeTruthy()
+    document.querySelectorAll("input[type='checkbox']")[2].dispatchEvent(new window.MouseEvent('click'));
+    expect(document.getElementsByTagName('li')[3].querySelector("input[type='checkbox']").checked).toBeTruthy()
+    deleteCompletedTasks()
+    expect(document.getElementsByTagName('li').length).toBe(3)
+    // Rearranging ids
+    expect(getCurrentList()).toStrictEqual([{ description: 'task 1', completed: false, index: 1 }, { description: 'brand new task added', completed: false, index: 2 }])
+  });
 });
