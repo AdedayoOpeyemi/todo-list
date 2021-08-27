@@ -6,6 +6,7 @@ import './assets/styles/styles.css';
 
 import { clearDisplay, loadTaskList, displayTask } from './modules/ui.js';
 import { addNewTask, getCurrentList } from './modules/add_remove.js';
+import { deleteCompletedTasks } from './modules/deletecompletedtasks.js';
 
 const taskForm = document.querySelector('#todo-form');
 const deleteAllButton = document.querySelector('#delete-all-completed');
@@ -23,15 +24,21 @@ taskForm.addEventListener('submit', (e) => {
   newTaskInput.value = '';
 });
 
-deleteAllButton.addEventListener('click', () => {
-  const newList = getCurrentList().filter((task) => task.completed === false);
-  let i = 1;
-  const updatedList = newList.map((task) => {
-    task.index = i;
-    i += 1;
-    return task;
-  });
-  localStorage.setItem('TaskList', JSON.stringify(updatedList));
-  clearDisplay();
-  loadTaskList();
-});
+// const deleteAllTasks = () => {
+//   const newList = getCurrentList().filter((task) => task.completed === false);
+//   let i = 1;
+//   const updatedList = newList.map((task) => {
+//     task.index = i;
+//     i += 1;
+//     return task;
+//   });
+//   localStorage.setItem('TaskList', JSON.stringify(updatedList));
+//   clearDisplay();
+//   loadTaskList();
+// };
+
+deleteAllButton.addEventListener('click', () => { 
+  deleteCompletedTasks()
+})
+
+// export { deleteAllTasks };
